@@ -6,10 +6,8 @@ import java.util.Random;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class GoogleTranslator {
-	private WebDriver driver;
+public class GoogleTranslator extends BasePage {
 
 	@FindBy(id = "source")
 	private WebElement source;
@@ -21,8 +19,7 @@ public class GoogleTranslator {
 	private WebElement resultBox;
 
 	public GoogleTranslator(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
+		super(driver);
 	}
 
 	public void inputSourceWord(String sourceWord) {

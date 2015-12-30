@@ -10,7 +10,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.cisco.vms.ta.task1.ui_model.GoogleSearchPage;
-import com.cisco.vms.ta.task1.ui_model.GoogleTranslator;
 
 public class GoogleTest {
 	private static final String BASEURL = "https://www.google.com.ua/webhp?hl=en";
@@ -20,7 +19,6 @@ public class GoogleTest {
 
 	private static WebDriver driver;
 	private static GoogleSearchPage googleSearchPage;
-	private static GoogleTranslator googleTranslator;
 
 	@BeforeClass
 	public static void setUp() {
@@ -28,7 +26,6 @@ public class GoogleTest {
 		driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
 		driver.get(BASEURL);
 		googleSearchPage = new GoogleSearchPage(driver);
-		googleTranslator = new GoogleTranslator(driver);
 	}
 
 	@AfterClass
@@ -39,8 +36,7 @@ public class GoogleTest {
 
 	@Test
 	public void googleTranslateTest() {
-		googleSearchPage.findTranslator(SEARCH_PHRASE);
-		String result = googleTranslator.translateTheWord(SOURCE_WORD);
+		String result = googleSearchPage.findTranslator(SEARCH_PHRASE).translateTheWord(SOURCE_WORD);
 		Assert.assertNotEquals(SOURCE_WORD, result, "Translated text equals!");
 	}
 }

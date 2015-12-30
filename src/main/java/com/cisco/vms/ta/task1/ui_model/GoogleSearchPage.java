@@ -5,10 +5,8 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class GoogleSearchPage {
-	private WebDriver driver;
+public class GoogleSearchPage extends BasePage {
 
 	@FindBy(name = "q")
 	private WebElement searchInput;
@@ -18,8 +16,7 @@ public class GoogleSearchPage {
 	private List<WebElement> searchResults;
 
 	public GoogleSearchPage(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
+		super(driver);
 	}
 
 	public void fillSearchForm(String searchPhrase) {
@@ -34,9 +31,10 @@ public class GoogleSearchPage {
 		searchResults.get(0).click();
 	}
 
-	public void findTranslator(String searchPhrase) {
+	public GoogleTranslator findTranslator(String searchPhrase) {
 		fillSearchForm(searchPhrase);
 		clickSearch();
 		clickFirstResult();
+		return new GoogleTranslator(driver);
 	}
 }
