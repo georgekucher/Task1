@@ -14,6 +14,8 @@ public class GoogleSearchPage extends BasePage {
 	private WebElement searchButton;
 	@FindBy(css = "div#ires h3.r a")
 	private List<WebElement> searchResults;
+	@FindBy(css = "table#nav td")
+	private List<WebElement> pages;
 
 	public GoogleSearchPage(WebDriver driver) {
 		super(driver);
@@ -31,9 +33,21 @@ public class GoogleSearchPage extends BasePage {
 		searchResults.get(0).click();
 	}
 
-	public GoogleTranslator findTranslator(String searchPhrase) {
+	public int getNumberOfResults() {
+		return searchResults.size();
+	}
+
+	public void clickPage(int i) {
+		pages.get(i).click();
+	}
+
+	public void googleSearch(String searchPhrase) {
 		fillSearchForm(searchPhrase);
 		clickSearch();
+	}
+
+	public GoogleTranslator findTranslator(String searchPhrase) {
+		googleSearch(searchPhrase);
 		clickFirstResult();
 		return new GoogleTranslator(driver);
 	}
