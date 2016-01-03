@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 import com.cisco.vms.ta.task1.ui_model.GoogleSearchPage;
@@ -23,7 +24,7 @@ public class BaseTest {
 		googleSearchPage = new GoogleSearchPage(driver);
 	}
 
-	// @AfterTest
+	//@AfterTest
 	public void tearDown() {
 		driver.quit();
 	}
