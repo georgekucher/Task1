@@ -7,5 +7,9 @@
 				<include name="translators"></include>
 			</run>
 		</groups>
+		
+		<packages>
+			<package name="com.cisco.vms.ta.task1.*"></package>
+		</packages>
    	</test>
 </suite>
